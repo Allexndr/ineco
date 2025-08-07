@@ -112,4 +112,8 @@ node_modules/
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Large files
+docs/Визуалы, анимации и т.д.-20250807T053422Z-1-001.zip
+*.zip 
