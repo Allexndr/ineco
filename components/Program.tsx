@@ -4,16 +4,19 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, User, MapPin, Calendar, Sparkles, TreePine, Flower2, Globe } from 'lucide-react';
 import { festivalZones, stageEvents, exhibitions } from '@/data/festival-data';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { getTranslation } from '@/data/translations';
 
 type TabType = 'zones' | 'stage' | 'exhibitions';
 
 export default function Program() {
+  const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabType>('zones');
 
   const tabs = [
-    { id: 'zones', label: '18 Зон фестиваля', icon: TreePine },
-    { id: 'stage', label: 'Главная сцена', icon: Sparkles },
-    { id: 'exhibitions', label: 'Выставки', icon: Flower2 }
+    { id: 'zones', labelKey: 'program.tabs.zones', icon: TreePine },
+    { id: 'stage', labelKey: 'program.tabs.stage', icon: Sparkles },
+    { id: 'exhibitions', labelKey: 'program.tabs.exhibitions', icon: Flower2 }
   ] as const;
 
   return (
@@ -57,7 +60,7 @@ export default function Program() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Программа фестиваля
+            {getTranslation('program.title', language)}
           </motion.h2>
           <motion.p 
             className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium"
@@ -65,7 +68,7 @@ export default function Program() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            18 площадок, на каждой из которых своя программа мероприятий в течение всего фестивального дня
+            {getTranslation('program.subtitle', language)}
           </motion.p>
         </motion.div>
 
@@ -87,7 +90,7 @@ export default function Program() {
                 whileTap={{ scale: 0.95 }}
               >
                 <IconComponent className="h-5 w-5" />
-                <span>{tab.label}</span>
+                <span>{getTranslation(tab.labelKey, language)}</span>
               </motion.button>
             );
           })}
@@ -152,7 +155,7 @@ export default function Program() {
                                 </div>
                               )}
                             </div>
-                            <div className="text-right ml-4">
+                            <div className="text-right ml-6 pr-2">
                               <motion.div 
                                 className="text-xl font-bold text-gradient"
                                 whileHover={{ scale: 1.1 }}
@@ -202,7 +205,7 @@ export default function Program() {
                               <span className="font-medium">{event.speaker}</span>
                             </div>
                           </div>
-                          <div className="text-right ml-6">
+                          <div className="text-right ml-6 pr-4">
                             <motion.div 
                               className="text-3xl font-black text-gradient"
                               whileHover={{ scale: 1.1 }}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Calendar, 
@@ -17,34 +17,36 @@ import {
   Flower2
 } from 'lucide-react';
 import { festivalInfo } from '@/data/festival-data';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Program from '@/components/Program';
-import InteractiveMap from '@/components/InteractiveMap';
-import Partners from '@/components/Partners';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import CountdownTimer from '@/components/CountdownTimer';
+import OptimizedSection from '@/components/ui/OptimizedSection';
 
-export default function Home() {
+// Ленивая загрузка тяжелых компонентов
+const About = lazy(() => import('@/components/About'));
+const Program = lazy(() => import('@/components/Program'));
+const InteractiveMap = lazy(() => import('@/components/InteractiveMap'));
+const Partners = lazy(() => import('@/components/Partners'));
+const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
+
+function HomeContent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [leaves, setLeaves] = useState<Array<{id: number, left: number, delay: number, type: string}>>([]);
-
-  useEffect(() => {
-    // Создаем анимированные листья разных типов
-    const newLeaves = Array.from({ length: 25 }, (_, i) => ({
+  
+  // Оптимизированные анимированные элементы - красиво, но не нагружает
+  const leaves = useMemo(() => {
+    return Array.from({ length: 8 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
-      delay: Math.random() * 15,
-      type: ['leaf', 'flower', 'sparkle'][Math.floor(Math.random() * 3)]
+      delay: Math.random() * 6,
+      type: ['leaf', 'flower', 'sparkle'][i % 3]
     }));
-    setLeaves(newLeaves);
   }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-eco-cream via-white to-eco-sage/20 relative overflow-x-hidden">
-      {/* Анимированные элементы фона */}
+      {/* Красивые анимированные элементы фона */}
       {leaves.map((leaf) => (
         <motion.div
           key={leaf.id}
@@ -52,58 +54,58 @@ export default function Home() {
           style={{
             left: `${leaf.left}%`,
             animationDelay: `${leaf.delay}s`,
-            animationDuration: `${12 + Math.random() * 8}s`
+            animationDuration: `${18 + Math.random() * 12}s`
           }}
-          initial={{ opacity: 0, scale: 0 }}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, delay: leaf.delay * 0.1 }}
+          transition={{ duration: 1.5, delay: leaf.delay * 0.15 }}
         />
       ))}
 
-      {/* Плавающие элементы природы */}
+      {/* Плавающие декоративные элементы */}
       <motion.div
         animate={{ 
-          y: [0, -20, 0],
+          y: [0, -15, 0],
           rotate: [0, 5, 0]
-        }}
-        transition={{ 
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-20 left-10 text-eco-green/20"
-      >
-        <TreePine size={60} />
-      </motion.div>
-
-      <motion.div
-        animate={{ 
-          y: [0, 15, 0],
-          rotate: [0, -5, 0]
-        }}
-        transition={{ 
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-        className="absolute top-40 right-20 text-eco-orange/20"
-      >
-        <Flower2 size={50} />
-      </motion.div>
-
-      <motion.div
-        animate={{ 
-          y: [0, -10, 0],
-          rotate: [0, 10, 0]
         }}
         transition={{ 
           duration: 12,
           repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute top-20 left-10 text-eco-green/15"
+      >
+        <TreePine size={50} />
+      </motion.div>
+
+      <motion.div
+        animate={{ 
+          y: [0, 20, 0],
+          rotate: [0, -8, 0]
+        }}
+        transition={{ 
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+        className="absolute top-40 right-20 text-eco-orange/15"
+      >
+        <Leaf size={45} />
+      </motion.div>
+
+      <motion.div
+        animate={{ 
+          y: [0, -12, 0],
+          rotate: [0, 12, 0]
+        }}
+        transition={{ 
+          duration: 18,
+          repeat: Infinity,
           ease: "easeInOut",
           delay: 4
         }}
-        className="absolute bottom-40 left-20 text-eco-sky-blue/20"
+        className="absolute bottom-32 left-32 text-eco-sky-blue/15"
       >
         <Sparkles size={40} />
       </motion.div>
@@ -111,22 +113,15 @@ export default function Home() {
       {/* Мобильное меню */}
       <div className={`mobile-menu fixed inset-0 z-50 lg:hidden ${isMenuOpen ? 'open' : ''}`}>
         <div className="flex justify-between items-center p-6 border-b border-eco-green/20">
-          <motion.h2 
-            className="text-2xl font-bold text-gradient"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <h2 className="text-2xl font-bold text-gradient">
             InEco Fest
-          </motion.h2>
-          <motion.button 
+          </h2>
+          <button 
             onClick={() => setIsMenuOpen(false)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
             className="p-2 rounded-full bg-eco-green/10 hover:bg-eco-green/20 transition-colors"
           >
             <X className="h-6 w-6 text-eco-green" />
-          </motion.button>
+          </button>
         </div>
         <nav className="p-6 space-y-4">
           {[
@@ -182,23 +177,47 @@ export default function Home() {
               >
                 Присоединяйтесь к нам в создании экологичного будущего
               </motion.p>
-              <CountdownTimer targetDate="2025-07-19T09:00:00" />
+              <CountdownTimer targetDate="2025-08-15T09:00:00" />
             </motion.div>
           </div>
         </section>
 
-        <About />
+        <OptimizedSection id="about" className="section-padding" delay={0.2}>
+          <About />
+        </OptimizedSection>
         
-        <Program />
+        <OptimizedSection id="program" className="section-padding bg-gradient-to-br from-eco-sage/5 to-white/80" delay={0.3}>
+          <Program />
+        </OptimizedSection>
         
-        <InteractiveMap />
+        <OptimizedSection id="map" className="section-padding" delay={0.4}>
+          <InteractiveMap />
+        </OptimizedSection>
         
-        <Partners />
+        <OptimizedSection id="partners" className="section-padding bg-gradient-to-br from-eco-cream/30 to-white/80" delay={0.5}>
+          <Partners />
+        </OptimizedSection>
         
-        <Contact />
+        <OptimizedSection id="contact" className="section-padding" delay={0.6}>
+          <Contact />
+        </OptimizedSection>
       </main>
 
-      <Footer />
+      <Suspense fallback={
+        <div className="flex items-center justify-center py-10">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-eco-green"></div>
+        </div>
+      }>
+        <Footer />
+      </Suspense>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <LanguageProvider>
+      <HomeContent />
+    </LanguageProvider>
   );
 } 

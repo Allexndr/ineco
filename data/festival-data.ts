@@ -458,15 +458,17 @@ export const exhibitions: Exhibition[] = [
 
 export const festivalInfo = {
   name: 'InEco Fest 2025',
-  date: '19 июля 2025',
+  date: '15 августа 2025',
   time: '09:00 - 18:00',
   location: 'Главный Ботанический Сад',
   address: 'г. Алматы, Бостандыкский район',
   description: 'Первый фестиваль, соединяющий экологию и инклюзию. Повышение осведомленности общества о важности заботы об окружающей среде и создания инклюзивного сообщества.',
   mission: 'Наша миссия - показать, что экология и инклюзия неразрывно связаны. Мы стремимся создать пространство, где каждый может внести свой вклад в сохранение природы, независимо от своих возможностей. Вместе мы создаем экологичное будущее.',
   partners: [
-    { name: 'Chevron', logo: '/chevron.png' },
-    { name: 'ITeachMe', logo: '/iteachme.png' },
-    { name: 'Ботанический сад', logo: '/botsad.png' }
+    { name: 'Chevron', logo: '/images/logos/chevron.png' },
+    { name: 'ITeachMe', logo: '/images/logos/iteachme.png' },
+    { name: 'InEco', logo: '/images/logos/ineco.png' },
+    { name: 'Ботанический сад', logo: '/images/logos/botsad.png' },
+    { name: 'Институт', logo: '/images/logos/institute.png' }
   ]
 }; 

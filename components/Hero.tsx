@@ -3,118 +3,165 @@
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Clock, ChevronDown, Leaf, Sparkles, TreePine } from 'lucide-react';
 import { festivalInfo } from '@/data/festival-data';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { getTranslation } from '@/data/translations';
+import OptimizedImage from './ui/OptimizedImage';
 
 export default function Hero() {
+  const { language } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
       {/* Фоновый градиент */}
       <div className="absolute inset-0 bg-gradient-to-br from-eco-green/10 via-eco-orange/5 to-eco-sky-blue/5 eco-pattern" />
       
-      {/* Анимированные элементы фона */}
+      {/* Красивые анимированные элементы фона */}
       <div className="absolute inset-0">
         <motion.div
           animate={{ 
-            scale: [1, 1.3, 1],
-            rotate: [0, 180, 360],
-            opacity: [0.3, 0.6, 0.3]
+            scale: [1, 1.25, 1],
+            rotate: [0, 90, 180],
+            opacity: [0.2, 0.5, 0.2]
           }}
           transition={{ 
             duration: 25,
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-20 left-20 w-40 h-40 bg-eco-gradient rounded-full blur-3xl opacity-30"
+          className="absolute top-20 left-20 w-36 h-36 bg-eco-gradient rounded-full blur-2xl opacity-25"
         />
         <motion.div
           animate={{ 
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 180, 0],
-            opacity: [0.2, 0.5, 0.2]
+            scale: [1.1, 1, 1.1],
+            rotate: [180, 90, 0],
+            opacity: [0.15, 0.4, 0.15]
           }}
           transition={{ 
             duration: 30,
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-20 right-20 w-60 h-60 bg-sunset-gradient rounded-full blur-3xl opacity-20"
+          className="absolute bottom-20 right-20 w-48 h-48 bg-sunset-gradient rounded-full blur-2xl opacity-20"
         />
         <motion.div
           animate={{ 
-            scale: [1, 1.4, 1],
-            rotate: [0, 90, 180],
-            opacity: [0.1, 0.4, 0.1]
+            scale: [1, 1.3, 1],
+            rotate: [0, 180, 360],
+            opacity: [0.1, 0.3, 0.1]
           }}
           transition={{ 
             duration: 35,
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-nature-gradient rounded-full blur-3xl opacity-10"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-nature-gradient rounded-full blur-3xl opacity-15"
         />
       </div>
 
       {/* Плавающие иконки природы */}
       <motion.div
         animate={{ 
-          y: [0, -30, 0],
-          rotate: [0, 10, 0]
+          y: [0, -25, 0],
+          rotate: [0, 8, 0]
         }}
         transition={{ 
-          duration: 8,
+          duration: 10,
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-32 left-16 text-eco-green/30"
+        className="absolute top-32 left-16 text-eco-green/25"
       >
-        <TreePine size={80} />
+        <TreePine size={70} />
       </motion.div>
 
       <motion.div
         animate={{ 
-          y: [0, 25, 0],
-          rotate: [0, -15, 0]
+          y: [0, 30, 0],
+          rotate: [0, -12, 0]
         }}
         transition={{ 
-          duration: 12,
+          duration: 14,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 2
         }}
-        className="absolute top-48 right-24 text-eco-orange/30"
+        className="absolute top-48 right-24 text-eco-orange/25"
       >
-        <Leaf size={60} />
+        <Leaf size={55} />
       </motion.div>
 
       <motion.div
         animate={{ 
           y: [0, -20, 0],
-          rotate: [0, 20, 0]
+          rotate: [0, 15, 0]
         }}
         transition={{ 
-          duration: 10,
+          duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 4
         }}
-        className="absolute bottom-32 left-32 text-eco-sky-blue/30"
+        className="absolute bottom-32 left-32 text-eco-sky-blue/25"
       >
-        <Sparkles size={50} />
+        <Sparkles size={45} />
+      </motion.div>
+
+      {/* Декоративные изображения */}
+
+
+      <motion.div
+        animate={{ 
+          y: [0, 15, 0],
+          rotate: [0, -5, 0]
+        }}
+        transition={{ 
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 3
+        }}
+        className="absolute bottom-40 left-10 w-28 h-28 opacity-20"
+      >
+        <OptimizedImage
+          src="/images/hero/hero-man.png"
+          alt="Парень"
+          width={112}
+          height={112}
+          className="w-full h-full object-contain"
+        />
       </motion.div>
 
       <div className="container-custom relative z-10">
         <div className="text-center max-w-5xl mx-auto">
+          {/* Логотип InEco Fest */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="mb-8 flex justify-center"
+          >
+            <OptimizedImage
+              src="/images/logos/ineco.png"
+              alt="InEco Fest Logo"
+              width={300}
+              height={150}
+              className="max-w-xs md:max-w-sm lg:max-w-md"
+              priority={true}
+            />
+          </motion.div>
+
           {/* Основной заголовок */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
             className="mb-12"
           >
             <motion.h1 
               className="text-6xl md:text-8xl lg:text-9xl font-black mb-8"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
             >
               <span className="text-gradient block mb-2">InEco</span>
               <span className="text-gradient-sunset block">Fest</span>
@@ -125,7 +172,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Первый фестиваль, соединяющий экологию и инклюзию
+              {getTranslation('hero.subtitle', language)}
             </motion.p>
           </motion.div>
 
@@ -147,7 +194,7 @@ export default function Hero() {
                 </div>
                 <div className="text-left">
                   <p className="font-bold text-gray-900 text-lg">{festivalInfo.date}</p>
-                  <p className="text-sm text-gray-600">Дата проведения</p>
+                  <p className="text-sm text-gray-600">{getTranslation('hero.date', language)}</p>
                 </div>
               </div>
             </motion.div>
@@ -163,7 +210,7 @@ export default function Hero() {
                 </div>
                 <div className="text-left">
                   <p className="font-bold text-gray-900 text-lg">{festivalInfo.location}</p>
-                  <p className="text-sm text-gray-600">Место проведения</p>
+                  <p className="text-sm text-gray-600">{getTranslation('hero.location', language)}</p>
                 </div>
               </div>
             </motion.div>
@@ -179,7 +226,7 @@ export default function Hero() {
                 </div>
                 <div className="text-left">
                   <p className="font-bold text-gray-900 text-lg">{festivalInfo.time}</p>
-                  <p className="text-sm text-gray-600">Время работы</p>
+                  <p className="text-sm text-gray-600">{getTranslation('hero.time', language)}</p>
                 </div>
               </div>
             </motion.div>
@@ -195,16 +242,9 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary text-xl px-10 py-5 font-bold"
-            >
-              Зарегистрироваться
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
               className="btn-secondary text-xl px-10 py-5 font-bold"
             >
-              Скачать программу
+              {getTranslation('hero.download', language)}
             </motion.button>
           </motion.div>
 
@@ -225,7 +265,7 @@ export default function Hero() {
               className="inline-flex items-center space-x-2 bg-eco-green/10 px-6 py-3 rounded-2xl"
             >
               <Leaf className="h-5 w-5 text-eco-green" />
-              <span className="text-eco-green font-semibold">18 площадок • Экология • Инклюзия</span>
+              <span className="text-eco-green font-semibold">{getTranslation('hero.platforms', language)}</span>
             </motion.div>
           </motion.div>
         </div>

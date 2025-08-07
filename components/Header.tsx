@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, Leaf, Sparkles } from 'lucide-react';
+import { Menu, Leaf, Sparkles, Globe, ChevronDown } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { getTranslation } from '@/data/translations';
+import OptimizedImage from './ui/OptimizedImage';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -10,6 +13,7 @@ interface HeaderProps {
 
 export default function Header({ onMenuClick }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +23,10 @@ export default function Header({ onMenuClick }: HeaderProps) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'ru' ? 'kk' : 'ru');
+  };
 
   return (
     <motion.header
@@ -31,122 +39,147 @@ export default function Header({ onMenuClick }: HeaderProps) {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between py-6">
-          {/* Логотип */}
+        <div className="flex items-center justify-between py-4">
+          {/* Логотипы партнеров */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-3"
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center space-x-6"
           >
+            {/* Chevron логотип */}
             <motion.div 
-              className="w-12 h-12 bg-eco-gradient rounded-2xl flex items-center justify-center shadow-lg"
+              className="w-16 h-16 flex items-center justify-center"
               whileHover={{ rotate: 5 }}
               transition={{ duration: 0.3 }}
             >
-              <Leaf className="text-white h-6 w-6" />
+              <OptimizedImage
+                src="/images/logos/chevron.png"
+                alt="Chevron"
+                width={64}
+                height={64}
+                className="w-full h-full object-contain"
+              />
             </motion.div>
-            <div>
-              <motion.h1 
-                className="text-2xl font-black text-gradient"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                InEco Fest
-              </motion.h1>
-              <motion.p 
-                className="text-xs text-gray-600 font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                19 июля 2025
-              </motion.p>
-            </div>
+            
+            {/* ITeachMe логотип */}
+            <motion.div 
+              className="w-16 h-16 flex items-center justify-center"
+              whileHover={{ rotate: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <OptimizedImage
+                src="/images/logos/iteachme.png"
+                alt="ITeachMe"
+                width={64}
+                height={64}
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+            
+            {/* InEco логотип */}
+            <motion.div 
+              className="w-16 h-16 flex items-center justify-center"
+              whileHover={{ rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <OptimizedImage
+                src="/images/logos/ineco.png"
+                alt="InEco Fest"
+                width={64}
+                height={64}
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+            
+            {/* Ботанический сад логотип */}
+            <motion.div 
+              className="w-16 h-16 flex items-center justify-center"
+              whileHover={{ rotate: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <OptimizedImage
+                src="/images/logos/botsad.png"
+                alt="Ботанический сад"
+                width={64}
+                height={64}
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+            
+            {/* Институт логотип */}
+            <motion.div 
+              className="w-16 h-16 flex items-center justify-center"
+              whileHover={{ rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <OptimizedImage
+                src="/images/logos/institute.png"
+                alt="Институт"
+                width={64}
+                height={64}
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
           </motion.div>
 
           {/* Десктопная навигация */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6">
             {[
-              { href: '#about', label: 'О фестивале' },
-              { href: '#program', label: 'Программа' },
-              { href: '#map', label: 'Карта' },
-              { href: '#partners', label: 'Партнеры' },
-              { href: '#contact', label: 'Контакты' }
+              { href: '#home', key: 'nav.home' },
+              { href: '#about', key: 'nav.about' },
+              { href: '#program', key: 'nav.program' },
+              { href: '#map', key: 'nav.map' },
+              { href: '#contact', key: 'nav.contact' }
             ].map((item, index) => (
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-eco-green transition-all duration-300 font-semibold relative group"
+                className="text-gray-700 hover:text-eco-green transition-all duration-300 font-semibold relative group px-4 py-2 rounded-xl hover:bg-eco-green/10"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -2 }}
               >
-                {item.label}
+                {getTranslation(item.key, language)}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-eco-gradient transition-all duration-300 group-hover:w-full"></span>
               </motion.a>
             ))}
+            
+            {/* Языковой переключатель */}
             <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
+              onClick={toggleLanguage}
+              className="flex items-center space-x-2 px-3 py-2 rounded-xl hover:bg-eco-green/10 transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary px-8 py-3 font-bold"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              Регистрация
+              <span className="text-gray-700 font-semibold">{language.toUpperCase()}</span>
+              <motion.div 
+                className="w-6 h-6 bg-eco-gradient rounded-full flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+              >
+                <span className="text-white text-xs font-bold">
+                  {language === 'ru' ? '🇷🇺' : '🇰🇿'}
+                </span>
+              </motion.div>
             </motion.button>
           </nav>
 
           {/* Мобильная кнопка меню */}
           <motion.button
             onClick={onMenuClick}
-            className="lg:hidden p-3 rounded-2xl bg-eco-green/10 hover:bg-eco-green/20 transition-all duration-300"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            className="lg:hidden p-2 rounded-xl bg-white/20 backdrop-blur-md border border-white/20"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
-            <Menu className="h-6 w-6 text-eco-green" />
+            <Menu className="h-6 w-6 text-gray-700" />
           </motion.button>
         </div>
       </div>
-
-      {/* Декоративные элементы */}
-      {!isScrolled && (
-        <>
-          <motion.div
-            animate={{ 
-              y: [0, -10, 0],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ 
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-4 right-20 text-eco-green/20"
-          >
-            <Sparkles size={20} />
-          </motion.div>
-          <motion.div
-            animate={{ 
-              y: [0, 8, 0],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{ 
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-            className="absolute top-6 right-32 text-eco-orange/20"
-          >
-            <Leaf size={16} />
-          </motion.div>
-        </>
-      )}
     </motion.header>
   );
 } 
