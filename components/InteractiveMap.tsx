@@ -14,8 +14,12 @@ export default function InteractiveMap() {
   };
 
   const handleDownloadMap = () => {
-    // Здесь будет логика скачивания PDF карты
-    alert('Скачивание карты...');
+    const link = document.createElement('a');
+    link.href = '/festival-map.pdf';
+    link.download = 'InEco_Fest_2025_Карта.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (

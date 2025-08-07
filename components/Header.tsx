@@ -105,7 +105,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
               />
             </motion.div>
             
-            {/* Институт логотип */}
+            {/* Институт ботаники и фитоинтродукции логотип */}
             <motion.div 
               className="w-16 h-16 flex items-center justify-center"
               whileHover={{ rotate: 5 }}
@@ -113,7 +113,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
             >
               <OptimizedImage
                 src="/images/logos/institute.png"
-                alt="Институт"
+                alt="Институт ботаники и фитоинтродукции"
                 width={64}
                 height={64}
                 className="w-full h-full object-contain"

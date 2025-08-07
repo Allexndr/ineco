@@ -239,13 +239,15 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 1 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
           >
-            <motion.button
+            <motion.a
+              href="/program.docx"
+              download="InEco_Fest_2025_Программа.docx"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary text-xl px-10 py-5 font-bold"
+              className="btn-secondary text-xl px-10 py-5 font-bold inline-flex items-center cursor-pointer"
             >
               {getTranslation('hero.download', language)}
-            </motion.button>
+            </motion.a>
           </motion.div>
 
           {/* Описание */}

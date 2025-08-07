@@ -56,7 +56,7 @@ ineco/
 - `botsad.png` - Логотип Ботанического сада
 - `chevron.png` - Логотип Chevron
 - `ineco.png` - Логотип InEco Fest
-- `institute.png` - Логотип Института
+- `institute.png` - Логотип Института ботаники и фитоинтродукции
 - `iteachme.png` - Логотип ITeachMe
 
 #### `/images/`

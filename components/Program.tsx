@@ -263,14 +263,16 @@ export default function Program() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <motion.button
+          <motion.a
+            href="/program.docx"
+            download="InEco_Fest_2025_Программа.docx"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="btn-primary text-xl px-12 py-5 font-bold"
+            className="btn-primary text-xl px-12 py-5 font-bold inline-flex items-center cursor-pointer"
           >
-            <Calendar className="h-6 w-6 mr-3 inline" />
-            Скачать полную программу (PDF)
-          </motion.button>
+            <Calendar className="h-6 w-6 mr-3" />
+            Скачать полную программу (DOCX)
+          </motion.a>
         </motion.div>
       </div>
     </section>

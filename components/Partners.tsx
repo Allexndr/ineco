@@ -34,7 +34,7 @@ const partners = [
     delay: 0.3
   },
   {
-    name: 'Институт',
+    name: 'Институт ботаники и фитоинтродукции',
     description: 'Научные исследования',
     logo: '/images/logos/institute.png',
     color: 'from-eco-orange to-eco-sun-yellow',

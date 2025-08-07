@@ -469,6 +469,6 @@ export const festivalInfo = {
     { name: 'ITeachMe', logo: '/images/logos/iteachme.png' },
     { name: 'InEco', logo: '/images/logos/ineco.png' },
     { name: 'Ботанический сад', logo: '/images/logos/botsad.png' },
-    { name: 'Институт', logo: '/images/logos/institute.png' }
+    { name: 'Институт ботаники и фитоинтродукции', logo: '/images/logos/institute.png' }
   ]
 }; 

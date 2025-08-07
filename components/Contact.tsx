@@ -61,8 +61,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Email</h4>
-                  <p className="text-gray-600">info@inecofest.ru</p>
-                  <p className="text-gray-600">partners@inecofest.ru</p>
+                  <p className="text-gray-600">iteachme2020@gmail.com</p>
                 </div>
               </div>
 
@@ -72,8 +71,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Телефон</h4>
-                  <p className="text-gray-600">+7 (999) 123-45-67</p>
-                  <p className="text-gray-600">+7 (999) 765-43-21</p>
+                  <p className="text-gray-600">+7 708 970 91 52</p>
+                  <p className="text-gray-600">+7 727 970 91 52</p>
                 </div>
               </div>
 
@@ -83,8 +82,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Адрес</h4>
-                  <p className="text-gray-600">Центральный парк культуры и отдыха</p>
-                  <p className="text-gray-600">ул. Парковая, 1</p>
+                  <p className="text-gray-600">Главный Ботанический Сад</p>
+                  <p className="text-gray-600">г. Алматы</p>
                 </div>
               </div>
             </div>
