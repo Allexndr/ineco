@@ -234,8 +234,8 @@ export const translations: Translations = {
     kk: 'Хабарлама *'
   },
   'contact.form.send': {
-    ru: 'Отправить сообщение',
-    kk: 'Хабарлама жіберу'
+    ru: 'Написать в WhatsApp',
+    kk: 'WhatsApp-та жазу'
   },
 
   // Футер

@@ -3,48 +3,44 @@
 import { motion } from 'framer-motion';
 import { Users, Heart, Leaf, Target, Sparkles, TreePine, Flower2, Globe } from 'lucide-react';
 import { festivalInfo } from '@/data/festival-data';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { getTranslation } from '@/data/translations';
 
 export default function About() {
-  const { language } = useLanguage();
-
   const features = [
     {
       icon: Users,
-      titleKey: 'values.inclusivity',
-      descriptionKey: 'values.inclusivity.desc',
+      title: 'Инклюзивность',
+      description: 'Создаем пространство, доступное для всех, независимо от возможностей',
       gradient: 'from-eco-green to-eco-leaf-green',
       color: 'text-eco-green'
     },
     {
       icon: Leaf,
-      titleKey: 'values.ecology',
-      descriptionKey: 'values.ecology.desc',
+      title: 'Экология',
+      description: 'Продвигаем экологичные решения и устойчивое развитие',
       gradient: 'from-eco-orange to-eco-sun-yellow',
       color: 'text-eco-orange'
     },
     {
       icon: Heart,
-      titleKey: 'values.community',
-      descriptionKey: 'values.community.desc',
+      title: 'Сообщество',
+      description: 'Объединяем людей для создания лучшего будущего',
       gradient: 'from-eco-sky-blue to-eco-forest-green',
       color: 'text-eco-sky-blue'
     },
     {
       icon: Target,
-      titleKey: 'values.education',
-      descriptionKey: 'values.education.desc',
+      title: 'Образование',
+      description: 'Обучаем практическим навыкам экологичного образа жизни',
       gradient: 'from-eco-earth-brown to-eco-orange',
       color: 'text-eco-earth-brown'
     }
   ];
 
   const stats = [
-    { number: '18', labelKey: 'stats.platforms', icon: TreePine },
-    { number: '50+', labelKey: 'stats.workshops', icon: Flower2 },
-    { number: '2000+', labelKey: 'stats.guests', icon: Users },
-    { number: '24', labelKey: 'stats.hours', icon: Globe }
+    { number: '18', label: 'Площадок', icon: TreePine },
+    { number: '50+', label: 'Мастер-классов', icon: Flower2 },
+    { number: '2000+', label: 'Ожидаемых гостей', icon: Users },
+    { number: '24', label: 'Часа активности', icon: Globe }
   ];
 
   return (
@@ -88,7 +84,7 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {getTranslation('about.title', language)}
+            О фестивале
           </motion.h2>
           <motion.p 
             className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium"
@@ -96,7 +92,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {getTranslation('about.subtitle', language)}
+            {festivalInfo.description}
           </motion.p>
         </motion.div>
 
@@ -129,7 +125,7 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              {getTranslation('about.mission.title', language)}
+              Наша миссия
             </motion.h3>
             <motion.p 
               className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium"
@@ -137,7 +133,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {getTranslation('about.mission.text', language)}
+              {festivalInfo.mission}
             </motion.p>
           </div>
         </motion.div>
@@ -153,7 +149,7 @@ export default function About() {
             const IconComponent = feature.icon;
             return (
               <motion.div
-                key={feature.titleKey}
+                key={feature.title}
                 initial={{ opacity: 0, y: 30, scale: 0.8 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
@@ -171,10 +167,10 @@ export default function About() {
                   <IconComponent className="h-10 w-10 text-white" />
                 </motion.div>
                 <h4 className="text-2xl font-bold text-gray-900 mb-4">
-                  {getTranslation(feature.titleKey, language)}
+                  {feature.title}
                 </h4>
                 <p className="text-gray-600 leading-relaxed">
-                  {getTranslation(feature.descriptionKey, language)}
+                  {feature.description}
                 </p>
               </motion.div>
             );
@@ -192,7 +188,7 @@ export default function About() {
             const IconComponent = stat.icon;
             return (
               <motion.div
-                key={stat.labelKey}
+                key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
@@ -214,7 +210,7 @@ export default function About() {
                   {stat.number}
                 </motion.div>
                 <div className="text-gray-600 font-semibold text-lg">
-                  {getTranslation(stat.labelKey, language)}
+                  {stat.label}
                 </div>
               </motion.div>
             );
