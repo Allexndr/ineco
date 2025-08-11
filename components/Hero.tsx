@@ -188,13 +188,13 @@ export default function Hero() {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex items-center justify-center space-x-4">
-                <div className="p-3 bg-eco-green/20 rounded-2xl">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-eco-green/20 rounded-2xl flex-shrink-0">
                   <Calendar className="h-8 w-8 text-eco-green" />
                 </div>
-                <div className="text-left">
-                  <p className="font-bold text-gray-900 text-lg">{festivalInfo.date}</p>
-                  <p className="text-sm text-gray-600">{getTranslation('hero.date', language)}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-gray-900 text-lg leading-tight">{festivalInfo.date}</p>
+                  <p className="text-sm text-gray-600 leading-tight">{getTranslation('hero.date', language)}</p>
                 </div>
               </div>
             </motion.div>
@@ -204,13 +204,13 @@ export default function Hero() {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
-              <div className="flex items-center justify-center space-x-4">
-                <div className="p-3 bg-eco-orange/20 rounded-2xl">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-eco-orange/20 rounded-2xl flex-shrink-0">
                   <MapPin className="h-8 w-8 text-eco-orange" />
                 </div>
-                <div className="text-left">
-                  <p className="font-bold text-gray-900 text-lg">{festivalInfo.location}</p>
-                  <p className="text-sm text-gray-600">{getTranslation('hero.location', language)}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-gray-900 text-lg leading-tight">{festivalInfo.location}</p>
+                  <p className="text-sm text-gray-600 leading-tight">{getTranslation('hero.location', language)}</p>
                 </div>
               </div>
             </motion.div>
@@ -220,13 +220,13 @@ export default function Hero() {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
-              <div className="flex items-center justify-center space-x-4">
-                <div className="p-3 bg-eco-sky-blue/20 rounded-2xl">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-eco-sky-blue/20 rounded-2xl flex-shrink-0">
                   <Clock className="h-8 w-8 text-eco-sky-blue" />
                 </div>
-                <div className="text-left">
-                  <p className="font-bold text-gray-900 text-lg">{festivalInfo.time}</p>
-                  <p className="text-sm text-gray-600">{getTranslation('hero.time', language)}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-gray-900 text-lg leading-tight">{festivalInfo.time}</p>
+                  <p className="text-sm text-gray-600 leading-tight">{getTranslation('hero.time', language)}</p>
                 </div>
               </div>
             </motion.div>
