@@ -135,7 +135,7 @@ export default function Hero() {
         <div className="text-center max-w-5xl mx-auto">
           {/* Логотип InEco Fest */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.1 }}
             className="mb-8 flex justify-center"
@@ -152,14 +152,14 @@ export default function Hero() {
 
           {/* Основной заголовок */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
             className="mb-12"
           >
             <motion.h1 
               className="text-6xl md:text-8xl lg:text-9xl font-black mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
             >
@@ -168,7 +168,7 @@ export default function Hero() {
             </motion.h1>
             <motion.p 
               className="text-2xl md:text-3xl text-gray-700 mb-12 max-w-3xl mx-auto font-medium"
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
@@ -178,13 +178,14 @@ export default function Hero() {
 
           {/* Информация о фестивале */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
           >
             <motion.div 
               className="glass-effect p-6"
+              initial={false}
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3 }}
             >
@@ -201,6 +202,7 @@ export default function Hero() {
             
             <motion.div 
               className="glass-effect p-6"
+              initial={false}
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
@@ -217,6 +219,7 @@ export default function Hero() {
             
             <motion.div 
               className="glass-effect p-6"
+              initial={false}
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
@@ -234,7 +237,7 @@ export default function Hero() {
 
           {/* Кнопки действий */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
@@ -252,7 +255,7 @@ export default function Hero() {
 
           {/* Описание */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
             className="max-w-4xl mx-auto"
@@ -261,7 +264,7 @@ export default function Hero() {
               {festivalInfo.description}
             </p>
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 1.4 }}
               className="inline-flex items-center space-x-2 bg-eco-green/10 px-6 py-3 rounded-2xl"
@@ -275,7 +278,7 @@ export default function Hero() {
 
       {/* Кнопка прокрутки вниз */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.6 }}
         className="absolute bottom-12 left-1/2 transform -translate-x-1/2"

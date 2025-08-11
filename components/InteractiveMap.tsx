@@ -84,13 +84,13 @@ export default function InteractiveMap() {
             className="relative"
           >
             <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/20">
-              {/* Официальная карта фестиваля */}
+              {/* Официальная карта фестиваля (PNG превью + кнопка скачивания PDF) */}
               <div className="relative mb-6">
                 <OptimizedImage
-                  src="/images/festival-map.svg"
+                  src="/images/festival-map.png"
                   alt="Карта фестиваля InEco Fest"
                   width={600}
-                  height={400}
+                  height={420}
                   className="w-full h-auto rounded-2xl"
                   priority={true}
                 />
