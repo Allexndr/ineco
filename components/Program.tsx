@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, User, MapPin, Calendar, Sparkles, TreePine, Flower2, Globe } from 'lucide-react';
+import { Clock, User, MapPin, Calendar, Sparkles, TreePine, Flower2, Globe, X } from 'lucide-react';
 import { festivalZones, stageEvents, exhibitions } from '@/data/festival-data';
+import { entities, type Entity } from '@/data/entities';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getTranslation } from '@/data/translations';
 
@@ -12,6 +13,7 @@ type TabType = 'zones' | 'stage' | 'exhibitions';
 export default function Program() {
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabType>('zones');
+  const [openedEntity, setOpenedEntity] = useState<Entity | null>(null);
 
   const tabs = [
     { id: 'zones', labelKey: 'program.tabs.zones', icon: TreePine },
@@ -107,7 +109,7 @@ export default function Program() {
           >
             {activeTab === 'zones' && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {festivalZones.map((zone, index) => (
+                 {festivalZones.map((zone, index) => (
                   <motion.div
                     key={zone.id}
                     initial={{ opacity: 0, y: 30, scale: 0.8 }}
@@ -136,7 +138,7 @@ export default function Program() {
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
+                      <div className="space-y-4">
                       {zone.activities.map((activity) => (
                         <motion.div 
                           key={activity.id} 
@@ -151,7 +153,15 @@ export default function Program() {
                               {activity.speaker && (
                                 <div className="flex items-center mt-3 text-sm text-gray-500">
                                   <User className="h-4 w-4 mr-2" />
-                                  <span className="font-medium">{activity.speaker}</span>
+                                    <button
+                                      className="font-medium underline decoration-dotted hover:text-eco-green"
+                                      onClick={() => {
+                                        const found = entities.find(e => activity.speaker && e.name.toLowerCase().includes(activity.speaker.toLowerCase().split(',')[0]));
+                                        if (found) setOpenedEntity(found);
+                                      }}
+                                    >
+                                      {activity.speaker}
+                                    </button>
                                 </div>
                               )}
                             </div>
@@ -275,6 +285,51 @@ export default function Program() {
           </motion.a>
         </motion.div>
       </div>
+
+      {/* Модальное окно сущности */}
+      <AnimatePresence>
+        {openedEntity && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setOpenedEntity(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-3xl max-w-2xl w-full overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-6 py-4 border-b">
+                <h3 className="text-xl font-bold">{openedEntity.name}</h3>
+                <button className="p-2 rounded-xl hover:bg-gray-100" onClick={() => setOpenedEntity(null)}>
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              {openedEntity.image && (
+                <div className="p-6">
+                  <img src={openedEntity.image} alt={openedEntity.name} className="w-full h-auto rounded-2xl border" />
+                </div>
+              )}
+              <div className="px-6 pb-6 text-gray-700 leading-relaxed whitespace-pre-line">
+                {openedEntity.description}
+              </div>
+              {openedEntity.links && openedEntity.links.length > 0 && (
+                <div className="px-6 pb-6 flex flex-wrap gap-3">
+                  {openedEntity.links.map((l) => (
+                    <a key={l.url} href={l.url} target="_blank" rel="noreferrer" className="btn-outline text-sm px-4 py-2">
+                      {l.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 } 
