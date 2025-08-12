@@ -37,6 +37,8 @@ export default function Program() {
     { id: 'exhibitions', labelKey: 'program.tabs.exhibitions', icon: Flower2 }
   ] as const;
 
+  const pick = (ru?: string, kk?: string) => (language === 'kk' ? (kk || ru || '') : (ru || kk || ''));
+
   return (
     <section id="program" className="section-padding bg-gradient-to-br from-white/80 to-eco-sage/10 backdrop-blur-sm relative overflow-hidden">
       {/* Декоративные элементы */}
@@ -148,9 +150,9 @@ export default function Program() {
                       </motion.div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-gradient transition-all duration-300">
-                          {zone.name}
+                          {pick(zone.name, zone.nameKk)}
                         </h3>
-                        <p className="text-sm text-gray-600 leading-relaxed">{zone.description}</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">{pick(zone.description, zone.descriptionKk)}</p>
                       </div>
                     </div>
                     
@@ -164,8 +166,8 @@ export default function Program() {
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
-                              <h4 className="font-semibold text-gray-900 text-lg">{activity.title}</h4>
-                              <p className="text-sm text-gray-600 mt-2 leading-relaxed">{activity.description}</p>
+                              <h4 className="font-semibold text-gray-900 text-lg">{pick(activity.title, activity.titleKk)}</h4>
+                              <p className="text-sm text-gray-600 mt-2 leading-relaxed">{pick(activity.description, activity.descriptionKk)}</p>
                               {activity.speaker && (
                                 <div className="flex items-center mt-3 text-sm text-gray-500">
                                   <User className="h-4 w-4 mr-2" />
@@ -176,19 +178,19 @@ export default function Program() {
                                         if (found) setOpenedEntity(found);
                                       }}
                                     >
-                                      {activity.speaker}
+                                      {pick(activity.speaker, activity.speakerKk)}
                                     </button>
                                 </div>
                               )}
                             </div>
                             <div className="text-right ml-6 pr-2">
                               <motion.div 
-                                className="text-xl font-bold text-gradient"
+                                className="text-lg sm:text-xl font-bold text-gradient whitespace-nowrap"
                                 whileHover={{ scale: 1.1 }}
                               >
                                 {activity.time}
                               </motion.div>
-                              <div className="text-xs text-gray-500 mt-1 font-medium">
+                              <div className="text-[10px] sm:text-xs text-gray-500 mt-1 font-medium whitespace-nowrap">
                                 {activity.duration}
                               </div>
                             </div>
@@ -210,7 +212,7 @@ export default function Program() {
                   transition={{ duration: 0.8 }}
                 >
                   <div className="text-center mb-8">
-                    <h3 className="text-3xl font-black text-gradient mb-4">Главная сцена</h3>
+                    <h3 className="text-3xl font-black text-gradient mb-4">{language === 'kk' ? 'Басты сахна' : 'Главная сцена'}</h3>
                     <p className="text-lg text-gray-700">Официальные церемонии, лекции и тренинги от спикеров, фильмы, концерт и лечебная музыка</p>
                   </div>
                   <div className="space-y-6">
@@ -224,11 +226,11 @@ export default function Program() {
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h4 className="text-xl font-bold text-gray-900 mb-3">{event.title}</h4>
-                            <p className="text-gray-700 mb-4 leading-relaxed">{event.description}</p>
+                            <h4 className="text-xl font-bold text-gray-900 mb-3">{pick(event.title, event.titleKk)}</h4>
+                            <p className="text-gray-700 mb-4 leading-relaxed">{pick(event.description, event.descriptionKk)}</p>
                             <div className="flex items-center text-sm text-gray-600">
                               <User className="h-4 w-4 mr-2" />
-                              <span className="font-medium">{event.speaker}</span>
+                              <span className="font-medium">{pick(event.speaker, event.speakerKk)}</span>
                             </div>
                           </div>
                           <div className="text-right ml-6 pr-4">
@@ -262,9 +264,9 @@ export default function Program() {
                     whileHover={{ scale: 1.02, y: -5 }}
                   >
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-gradient transition-all duration-300">
-                      {exhibition.title}
+                      {pick(exhibition.title, exhibition.titleKk)}
                     </h3>
-                    <p className="text-gray-700 mb-6 leading-relaxed">{exhibition.description}</p>
+                    <p className="text-gray-700 mb-6 leading-relaxed">{pick(exhibition.description, exhibition.descriptionKk)}</p>
                     <div className="space-y-3 text-sm">
                       <div className="flex items-center text-gray-600">
                         <Clock className="h-5 w-5 mr-3 text-eco-green" />
@@ -272,7 +274,7 @@ export default function Program() {
                       </div>
                       <div className="flex items-center text-gray-600">
                         <MapPin className="h-5 w-5 mr-3 text-eco-orange" />
-                        <span className="font-medium">{exhibition.location}</span>
+                        <span className="font-medium">{pick(exhibition.location, exhibition.locationKk)}</span>
                       </div>
                     </div>
                   </motion.div>
