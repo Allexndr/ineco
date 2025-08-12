@@ -106,30 +106,7 @@ export default function Hero() {
         <Sparkles size={45} />
       </motion.div>
 
-      {/* Декоративные изображения */}
-
-
-      <motion.div
-        animate={{ 
-          y: [0, 15, 0],
-          rotate: [0, -5, 0]
-        }}
-        transition={{ 
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 3
-        }}
-        className="absolute bottom-40 left-10 w-28 h-28 opacity-20"
-      >
-        <OptimizedImage
-          src="/images/hero/hero-man.png"
-          alt="Парень"
-          width={112}
-          height={112}
-          className="w-full h-full object-contain"
-        />
-      </motion.div>
+      {/* Убрали портрет с фона */}
 
       <div className="container-custom relative z-10">
         <div className="text-center max-w-5xl mx-auto">
