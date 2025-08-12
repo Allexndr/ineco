@@ -188,7 +188,7 @@ export default function Hero() {
                   <MapPin className="h-8 w-8 text-eco-orange" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-gray-900 text-lg leading-tight">{festivalInfo.location}</p>
+                  <p className="font-bold text-gray-900 text-lg leading-tight">{language === 'kk' ? (festivalInfo as any).locationKk || festivalInfo.location : festivalInfo.location}</p>
                   <p className="text-sm text-gray-600 leading-tight">{getTranslation('hero.location', language)}</p>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function Hero() {
             className="max-w-4xl mx-auto"
           >
             <p className="text-xl text-gray-700 leading-relaxed mb-8 font-medium">
-              {festivalInfo.description}
+              {language === 'kk' ? (festivalInfo as any).descriptionKk || festivalInfo.description : festivalInfo.description}
             </p>
             <motion.div
               initial={false}

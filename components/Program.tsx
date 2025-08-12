@@ -378,7 +378,15 @@ export default function Program() {
                   </button>
                 </div>
                 <div className="p-6">
-                  {openedEntity.image ? (
+                  {Array.isArray((openedEntity as any).images) && (openedEntity as any).images.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {(openedEntity as any).images.map((src: string) => (
+                        <div key={src} className="rounded-2xl border p-3">
+                          <img src={src} alt={openedEntity.name} className="w-full h-auto rounded-xl" />
+                        </div>
+                      ))}
+                    </div>
+                  ) : openedEntity.image ? (
                     <img src={openedEntity.image} alt={openedEntity.name} className="w-full h-auto rounded-2xl border" />
                   ) : (
                     <div className="w-full h-48 rounded-2xl border border-dashed flex items-center justify-center text-gray-400 select-none" aria-label={pick('Фото отсутствует','Фото жоқ')}>

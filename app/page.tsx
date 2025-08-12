@@ -26,10 +26,13 @@ import Partners from '@/components/Partners';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import CountdownTimer from '@/components/CountdownTimer';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { getTranslation } from '@/data/translations';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [leaves, setLeaves] = useState<Array<{id: number, left: number, delay: number, type: string}>>([]);
+  const { language } = useLanguage();
 
   useEffect(() => {
     // Создаем анимированные листья разных типов
@@ -174,7 +177,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                До фестиваля осталось
+                {getTranslation('countdown.title', language)}
               </motion.h2>
               <motion.p 
                 className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto"
@@ -182,7 +185,7 @@ export default function Home() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Присоединяйтесь к нам в создании экологичного будущего
+                {getTranslation('countdown.subtitle', language)}
               </motion.p>
               <CountdownTimer targetDate="2025-08-15T09:00:00" />
             </motion.div>

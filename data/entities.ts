@@ -9,6 +9,7 @@ export interface Entity {
   officialRu?: string;
   officialKk?: string;
   image?: string; // path under public
+  images?: string[]; // несколько изображений/логотипов
   // краткие/полные описания
   shortRu?: string;
   shortKk?: string;
@@ -37,6 +38,7 @@ export const entities: Entity[] = [
     id: 'american-space-almaty',
     name: 'American Space Almaty',
     image: '/images/logos/american-space-almaty.png',
+    images: ['/images/logos/american-space-almaty.png', '/images/logos/makerspace-almaty.png'],
     officialRu: 'American Space Almaty / Makerspace Almaty',
     officialKk: 'American Space Almaty / Makerspace Almaty',
     shortRu:

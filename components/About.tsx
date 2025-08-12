@@ -3,44 +3,47 @@
 import { motion } from 'framer-motion';
 import { Users, Heart, Leaf, Target, Sparkles, TreePine, Flower2, Globe } from 'lucide-react';
 import { festivalInfo } from '@/data/festival-data';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { getTranslation } from '@/data/translations';
 
 export default function About() {
+  const { language } = useLanguage();
   const features = [
     {
       icon: Users,
-      title: 'Инклюзивность',
-      description: 'Создаем пространство, доступное для всех, независимо от возможностей',
+      title: getTranslation('values.inclusivity', language),
+      description: getTranslation('values.inclusivity.desc', language),
       gradient: 'from-eco-green to-eco-leaf-green',
       color: 'text-eco-green'
     },
     {
       icon: Leaf,
-      title: 'Экология',
-      description: 'Продвигаем экологичные решения и устойчивое развитие',
+      title: getTranslation('values.ecology', language),
+      description: getTranslation('values.ecology.desc', language),
       gradient: 'from-eco-orange to-eco-sun-yellow',
       color: 'text-eco-orange'
     },
     {
       icon: Heart,
-      title: 'Сообщество',
-      description: 'Объединяем людей для создания лучшего будущего',
+      title: getTranslation('values.community', language),
+      description: getTranslation('values.community.desc', language),
       gradient: 'from-eco-sky-blue to-eco-forest-green',
       color: 'text-eco-sky-blue'
     },
     {
       icon: Target,
-      title: 'Образование',
-      description: 'Обучаем практическим навыкам экологичного образа жизни',
+      title: getTranslation('values.education', language),
+      description: getTranslation('values.education.desc', language),
       gradient: 'from-eco-earth-brown to-eco-orange',
       color: 'text-eco-earth-brown'
     }
   ];
 
   const stats = [
-    { number: '18', label: 'Площадок', icon: TreePine },
-    { number: '50+', label: 'Мастер-классов', icon: Flower2 },
-    { number: '2000+', label: 'Ожидаемых гостей', icon: Users },
-    { number: '24', label: 'Часа активности', icon: Globe }
+    { number: '18', label: getTranslation('stats.platforms', language), icon: TreePine },
+    { number: '50+', label: getTranslation('stats.workshops', language), icon: Flower2 },
+    { number: '2000+', label: getTranslation('stats.guests', language), icon: Users },
+    { number: '24', label: getTranslation('stats.hours', language), icon: Globe }
   ];
 
   return (
@@ -84,7 +87,7 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            О фестивале
+            {getTranslation('about.title', language)}
           </motion.h2>
           <motion.p 
             className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium"
@@ -92,7 +95,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {festivalInfo.description}
+            {language === 'kk' ? (festivalInfo as any).descriptionKk || festivalInfo.description : festivalInfo.description}
           </motion.p>
         </motion.div>
 
@@ -125,7 +128,7 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Наша миссия
+              {getTranslation('about.mission.title', language)}
             </motion.h3>
             <motion.p 
               className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium"
@@ -133,7 +136,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {festivalInfo.mission}
+              {language === 'kk' ? (festivalInfo as any).missionKk || festivalInfo.mission : festivalInfo.mission}
             </motion.p>
           </div>
         </motion.div>

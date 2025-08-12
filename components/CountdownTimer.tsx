@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Calendar, MapPin, Leaf } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { getTranslation } from '@/data/translations';
 
 interface CountdownTimerProps {
   targetDate: string;
@@ -16,6 +18,7 @@ interface TimeLeft {
 }
 
 export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
+  const { language } = useLanguage();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -57,25 +60,25 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
   const timeUnits = [
     { 
       value: timeLeft.days, 
-      label: 'Дней', 
+      label: getTranslation('countdown.days', language), 
       icon: Calendar,
       gradient: 'from-eco-green to-eco-leaf-green'
     },
     { 
       value: timeLeft.hours, 
-      label: 'Часов', 
+      label: getTranslation('countdown.hours', language), 
       icon: Clock,
       gradient: 'from-eco-orange to-eco-sun-yellow'
     },
     { 
       value: timeLeft.minutes, 
-      label: 'Минут', 
+      label: getTranslation('countdown.minutes', language), 
       icon: MapPin,
       gradient: 'from-eco-sky-blue to-eco-forest-green'
     },
     { 
       value: timeLeft.seconds, 
-      label: 'Секунд', 
+      label: getTranslation('countdown.seconds', language), 
       icon: Leaf,
       gradient: 'from-eco-earth-brown to-eco-orange'
     }
