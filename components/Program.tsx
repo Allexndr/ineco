@@ -317,7 +317,7 @@ export default function Program() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl max-h-[85vh]"
+                className="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between px-6 py-4 border-b">
@@ -331,7 +331,7 @@ export default function Program() {
                     <img src={openedEntity.image} alt={openedEntity.name} className="w-full h-auto rounded-2xl border" />
                   </div>
                 )}
-                <div className="px-6 pb-6 text-gray-700 leading-relaxed whitespace-pre-line overflow-y-auto pr-2">
+                <div className="px-6 pb-6 text-gray-700 leading-relaxed whitespace-pre-line">
                   {openedEntity.description}
                 </div>
                 {openedEntity.links && openedEntity.links.length > 0 && (
