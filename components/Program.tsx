@@ -52,7 +52,7 @@ export default function Program() {
           repeat: Infinity,
           ease: "linear"
         }}
-        className="absolute top-20 right-20 w-40 h-40 bg-eco-green/5 rounded-full blur-3xl"
+        className="pointer-events-none absolute top-20 right-20 w-40 h-40 bg-eco-green/5 rounded-full blur-3xl"
       />
       <motion.div
         animate={{ 
@@ -64,7 +64,7 @@ export default function Program() {
           repeat: Infinity,
           ease: "linear"
         }}
-        className="absolute bottom-20 left-20 w-32 h-32 bg-eco-orange/5 rounded-full blur-3xl"
+        className="pointer-events-none absolute bottom-20 left-20 w-32 h-32 bg-eco-orange/5 rounded-full blur-3xl"
       />
 
       <div className="container-custom relative z-10">
@@ -172,7 +172,7 @@ export default function Program() {
                                 <div className="flex items-center mt-3 text-sm text-gray-500">
                                   <User className="h-4 w-4 mr-2" />
                                     <button
-                                      className="font-medium underline decoration-dotted hover:text-eco-green"
+                                      className="font-medium underline decoration-dotted hover:text-eco-green inline-flex items-center px-1 py-0.5 rounded border border-eco-green/20 hover:border-eco-green/40"
                                       onClick={() => {
                                         const found = entities.find(e => activity.speaker && e.name.toLowerCase().includes(activity.speaker.toLowerCase().split(',')[0]));
                                         if (found) setOpenedEntity(found);

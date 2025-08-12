@@ -101,7 +101,7 @@ export default function InteractiveMap() {
                 onClick={handleDownloadMap}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full btn-primary flex items-center justify-center space-x-3 text-lg font-bold py-4"
+                className="w-full btn-primary flex items-center justify-center space-x-3 text-lg font-bold py-4 border-2 border-white/40 hover:border-white/60"
               >
                 <Download className="h-6 w-6" />
                 <span>Скачать карту (PDF)</span>

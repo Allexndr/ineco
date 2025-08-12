@@ -13,11 +13,11 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
       {/* Фоновый градиент */}
-      <div className="absolute inset-0 bg-gradient-to-br from-eco-green/10 via-eco-orange/5 to-eco-sky-blue/5 eco-pattern" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-eco-green/10 via-eco-orange/5 to-eco-sky-blue/5 eco-pattern" />
       
       {/* Красивые анимированные элементы фона */}
       <div className="absolute inset-0">
-        <motion.div
+       <motion.div
           animate={{ 
             scale: [1, 1.25, 1],
             rotate: [0, 90, 180],
@@ -28,7 +28,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-20 left-20 w-36 h-36 bg-eco-gradient rounded-full blur-2xl opacity-25"
+          className="pointer-events-none absolute top-20 left-20 w-36 h-36 bg-eco-gradient rounded-full blur-2xl opacity-25"
         />
         <motion.div
           animate={{ 
@@ -41,7 +41,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-20 right-20 w-48 h-48 bg-sunset-gradient rounded-full blur-2xl opacity-20"
+          className="pointer-events-none absolute bottom-20 right-20 w-48 h-48 bg-sunset-gradient rounded-full blur-2xl opacity-20"
         />
         <motion.div
           animate={{ 
@@ -54,7 +54,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-nature-gradient rounded-full blur-3xl opacity-15"
+          className="pointer-events-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-nature-gradient rounded-full blur-3xl opacity-15"
         />
       </div>
 
