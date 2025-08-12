@@ -69,7 +69,7 @@ export const festivalZones: Zone[] = [
         time: '12:00-16:00',
         duration: '240 мин',
         description: 'Коалиция Института Ботаники и Фитоинтродукции, Fading TSE, Act for Impact и Urban Forum Kazakhstan',
-        speaker: 'Tabigat Labs',
+        speaker: 'Tabiğat Labs',
         type: 'workshop'
       }
     ]
@@ -173,11 +173,11 @@ export const festivalZones: Zone[] = [
       },
       {
         id: 'steam-3',
-        title: 'Мастер-классы от American Maker Space',
+        title: 'Мастер-классы от American Maker space',
         time: '12:00-16:00',
         duration: '240 мин',
         description: 'Мастер классы от American Maker space: 12:00 «Умный цветочный горшок», «Монитор качества воздуха», 13:00 «Извлечение ДНК, Натуральные ph индикаторы, бомбочка для ванны» 14:00 Эксперименты STEM For Them 15:00 «Зеленая химия»',
-        speaker: 'American Maker Space',
+        speaker: 'American Maker space',
         type: 'workshop'
       }
     ]
@@ -329,8 +329,8 @@ export const stageEvents: StageEvent[] = [
     title: 'Сакральные деревья. О живой памяти, корнях и будущем',
     time: '16:35',
     duration: '15 мин',
-    speaker: 'Темиртас Искаков, Tabigat Labs',
-    description: 'Сакральные деревья. О живой памяти, корнях и будущем - Темиртас Искаков, Tabigat Labs'
+    speaker: 'Темиртас Искаков, Tabiğat Labs',
+    description: 'Сакральные деревья. О живой памяти, корнях и будущем - Темиртас Искаков, Tabiğat Labs'
   },
   {
     id: 'stage-7',
@@ -385,8 +385,8 @@ export const stageEvents: StageEvent[] = [
     title: 'Документальный фильм «Алматы? Ок жить со смогом?»',
     time: '19:00',
     duration: '75 мин',
-    speaker: 'Канат Бейсекеев и Almaty Air',
-    description: 'Документальный фильм «Алматы? Ок жить со смогом?» режиссера Каната Бейсекеева и Almaty Air'
+    speaker: 'Канат Бейсекеев и Almaty Air Initiative',
+    description: 'Документальный фильм «Алматы? Ок жить со смогом?» режиссера Каната Бейсекеева и Almaty Air Initiative'
   }
 ];
 
@@ -435,8 +435,8 @@ export const festivalInfo = {
     { name: 'InEco', logo: '/images/logos/ineco.png' },
     { name: 'Ботанический сад', logo: '/images/logos/botsad.png' },
     { name: 'Институт ботаники и фитоинтродукции', logo: '/images/logos/institute.png' },
-    { name: 'Tabigat Labs', logo: '/images/logos/tabigat.png' },
+    { name: 'Tabiğat Labs', logo: '/images/logos/tabigat.png' },
     { name: 'Recycle Birge', logo: '/images/logos/recycle.png' },
-    { name: 'American Maker Space', logo: '/images/logos/ams.png' }
+    { name: 'American Maker space', logo: '/images/logos/ams.png' }
   ]
 }; 
