@@ -39,6 +39,44 @@ export default function Program() {
 
   const pick = (ru?: string, kk?: string) => (language === 'kk' ? (kk || ru || '') : (ru || kk || ''));
 
+  const normalize = (value?: string): string =>
+    (value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      // убираем диакритики (ğ -> g)
+      .replace(/\p{Diacritic}/gu, '')
+      .replace(/[«»“”"'`]/g, '')
+      .trim();
+
+  // Явные синонимы/варианты написаний → id сущности
+  const entityAliasMap: Record<string, string> = {
+    'american maker space': 'american-space-almaty',
+    'american makerspace': 'american-space-almaty',
+    'makerspace almaty': 'makerspace-almaty',
+    'american space almaty': 'american-space-almaty',
+    'tabigat labs': 'tabigat-labs',
+    'tabigatlabs': 'tabigat-labs',
+    'айжан беккуловой': 'aizhan-bekkulova',
+    'айжан беккулова': 'aizhan-bekkulova'
+  };
+
+  const findEntityBySpeaker = (speaker?: string): Entity | null => {
+    const source = normalize(speaker?.split(',')[0]);
+    if (!source) return null;
+    // Проверка по алиасам
+    const aliasId = entityAliasMap[source];
+    if (aliasId) {
+      const byAlias = entities.find((e) => e.id === aliasId);
+      if (byAlias) return byAlias;
+    }
+    return (
+      entities.find((e) => {
+        const name = normalize(e.name);
+        return name.includes(source) || source.includes(name);
+      }) || null
+    );
+  };
+
   return (
     <section id="program" className="section-padding bg-gradient-to-br from-white/80 to-eco-sage/10 backdrop-blur-sm relative overflow-hidden">
       {/* Декоративные элементы */}
@@ -172,10 +210,21 @@ export default function Program() {
                                 <div className="flex items-center mt-3 text-sm text-gray-500">
                                   <User className="h-4 w-4 mr-2" />
                                     <button
-                                      className="font-medium underline decoration-dotted hover:text-eco-green inline-flex items-center px-1 py-0.5 rounded border border-eco-green/20 hover:border-eco-green/40"
+                                      type="button"
+                                      className="font-medium underline decoration-dotted hover:text-eco-green inline-flex items-center px-1 py-0.5 rounded border border-eco-green/20 hover:border-eco-green/40 focus:outline-none focus:ring-2 focus:ring-eco-green/50"
                                       onClick={() => {
-                                        const found = entities.find(e => activity.speaker && e.name.toLowerCase().includes(activity.speaker.toLowerCase().split(',')[0]));
-                                        if (found) setOpenedEntity(found);
+                                        const found = findEntityBySpeaker(activity.speaker);
+                                        if (found) {
+                                          setOpenedEntity(found);
+                                        } else {
+                                          // Fallback: открыть модалку даже без каталога entities
+                                          setOpenedEntity({
+                                            id: `ad-hoc-${activity.id}`,
+                                            name: pick(activity.speaker, activity.speakerKk) || 'Информация',
+                                            shortRu: activity.description,
+                                            shortKk: activity.descriptionKk
+                                          } as unknown as Entity);
+                                        }
                                       }}
                                     >
                                       {pick(activity.speaker, activity.speakerKk)}
@@ -328,13 +377,20 @@ export default function Program() {
                     <X className="h-5 w-5" />
                   </button>
                 </div>
-                {openedEntity.image && (
-                  <div className="p-6">
+                <div className="p-6">
+                  {openedEntity.image ? (
                     <img src={openedEntity.image} alt={openedEntity.name} className="w-full h-auto rounded-2xl border" />
-                  </div>
-                )}
+                  ) : (
+                    <div className="w-full h-48 rounded-2xl border border-dashed flex items-center justify-center text-gray-400 select-none" aria-label={pick('Фото отсутствует','Фото жоқ')}>
+                      {pick('Фото отсутствует','Фото жоқ')}
+                    </div>
+                  )}
+                </div>
                 <div className="px-6 pb-6 text-gray-700 leading-relaxed whitespace-pre-line">
-                  {openedEntity.description}
+                  {pick(
+                    (openedEntity as any).fullRu || (openedEntity as any).shortRu || (openedEntity as any).description,
+                    (openedEntity as any).fullKk || (openedEntity as any).shortKk || (openedEntity as any).description
+                  )}
                 </div>
                 {openedEntity.links && openedEntity.links.length > 0 && (
                   <div className="px-6 pb-6 flex flex-wrap gap-3">
