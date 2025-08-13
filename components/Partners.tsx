@@ -129,44 +129,6 @@ export default function Partners() {
             </motion.div>
           ))}
         </div>
-
-        {/* Дополнительная информация о партнерстве */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-gradient-to-r from-eco-green/10 to-eco-orange/10 rounded-3xl p-8 backdrop-blur-sm border border-eco-green/20">
-            <motion.h3 
-              className="text-2xl font-bold text-gray-900 mb-4"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              Станьте партнером фестиваля
-            </motion.h3>
-            <motion.p 
-              className="text-gray-600 mb-6 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1 }}
-            >
-              Присоединяйтесь к нам в создании экологичного будущего. 
-              Вместе мы можем сделать больше для планеты и общества.
-            </motion.p>
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary px-8 py-4 font-bold"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              Связаться с нами
-            </motion.button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
