@@ -80,7 +80,7 @@ export default function Footer() {
                   >
                     InEco Fest
                   </motion.h3>
-                  <p className="text-sm text-gray-400 font-medium">19 июля 2025</p>
+                  <p className="text-sm text-gray-400 font-medium">15 августа 2025</p>
                 </div>
               </motion.div>
               <motion.p 
