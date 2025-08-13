@@ -87,7 +87,7 @@ export default function InteractiveMap() {
               {/* Официальная карта фестиваля (PNG превью + кнопка скачивания PDF) */}
               <div className="relative mb-6">
                 <OptimizedImage
-                  src="/images/festival-map.png"
+                  src="/images/festival-map.jpg"
                   alt="Карта фестиваля InEco Fest"
                   width={600}
                   height={420}
