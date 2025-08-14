@@ -35,7 +35,7 @@ export default function InteractiveMap() {
           repeat: Infinity,
           ease: "linear"
         }}
-        className="absolute top-20 right-20 w-40 h-40 bg-eco-green/5 rounded-full blur-3xl"
+        className="pointer-events-none absolute top-20 right-20 w-40 h-40 bg-eco-green/5 rounded-full blur-3xl"
       />
       <motion.div
         animate={{ 
@@ -47,7 +47,7 @@ export default function InteractiveMap() {
           repeat: Infinity,
           ease: "linear"
         }}
-        className="absolute bottom-20 left-20 w-32 h-32 bg-eco-orange/5 rounded-full blur-3xl"
+        className="pointer-events-none absolute bottom-20 left-20 w-32 h-32 bg-eco-orange/5 rounded-full blur-3xl"
       />
 
       <div className="container-custom relative z-10">
