@@ -220,8 +220,8 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
           >
             <motion.a
-              href="/program.docx"
-              download="InEco_Fest_2025_Программа.docx"
+              href={language === 'kk' ? '/program-kk.docx' : '/program-ru.docx'}
+              download={language === 'kk' ? 'InEco_Fest_2025_Baғdarlama.docx' : 'InEco_Fest_2025_Программа.docx'}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="btn-secondary text-xl px-10 py-5 font-bold inline-flex items-center cursor-pointer"
